@@ -1,5 +1,6 @@
 
 
+
 function calculateSunsign(value) {
   console.log(value);
   let sunsign = 'placeholder';
@@ -48,20 +49,54 @@ function watchFormTwo() {
   $('.js-horoscope').submit(event => {
     event.preventDefault();
     const sunsign = $('#js-sunsign').val();
-    const day = $('#js-day').val();
+    const day = $('#js-query').val();
     getHoroscope(sunsign, day);
   })
 }
 
  function nextForm(sunsign) {
-  This will create the content to show the next form, with sunsign, day, and submit PushSubscriptionOptions. 
+   $('.content-container').empty();
+   $('.content-container').append(
+     `<form class="js-horoscope">
+     <fieldset>
+     <legend>Choose your Sunsign, and pick which day's horoscope you would like!</legend>
+     <p>
+     <select id = "js-sunsign">
+             <option value = "Aquarius">Aquarius</option>
+             <option value = "Pisces">Pisces</option>
+             <option value = "Aries">Aries</option>
+             <option value = "Taurus">Taurus</option>
+             <option value = "Gemini">Gemini</option>
+             <option value = "Cancer">Cancer</option>
+             <option value = "Leo">Leo</option>
+             <option value = "Virgo">Virgo</option>
+             <option value = "Libra">Libra</option>
+             <option value = "Scorpio">Scorpio</option>
+             <option value = "Sagittarius">Sagittarius</option>
+             <option value = "Capricorn">Capricorn</option>
+     </select>
+     <select id = "js-query">
+             <option value = "yesterday">Yesterday</option>
+             <option value = "today">Today</option>
+             <option value = "tomorrow">Tomorrow</option>
+
+     </select>
+     <input type="submit" value="Submit">
+     </p>
+   </form>
+   </fieldset>`
+   )
+  $(`#js-sunsign option[value="${sunsign}"]`).attr("selected",true);
+  $('#js-query option[value="today"]').attr("selected",true);
+  watchFormTwo();
 }
 
 function skipFormOne() {
-  This will run if the skip button is chosen, rather than the submit button. 
-  The page will reload ; 
-  nextForm();
-}
+  $('.js-birth-date').on('click', '#skipButton', function(event) {
+  nextForm('Aquarius');
+  });
+};
+
 
 function watchFormOne() {
   $('.js-birth-date').submit(event => {
@@ -71,6 +106,7 @@ function watchFormOne() {
     let signValue = `${month}.${date}`
     calculateSunsign(signValue);
   });
+  skipFormOne();
 }
 
 $(watchFormOne);
