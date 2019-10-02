@@ -45,10 +45,31 @@ function calculateSunsign(value) {
   nextForm(sunsign);
 }
 
+function getHoroscope(sunsign, query) {
+  const url = `https://aztro.sameerkumar.website?sign=${sunsign}&day=${query}`
+  console.log(url);
+
+  fetch(url, {
+    method: 'post'
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+        console.log(response.json());
+      }
+      throw new Error(response.statusText);
+    })
+    // .then(responseJson => displayResults(responseJson))
+    .catch(err => {
+      $('#js-error-message').text(`Something went wrong: ${err.message}`);
+    });
+}
+
+
 function watchFormTwo() {
   $('.js-horoscope').submit(event => {
     event.preventDefault();
-    const sunsign = $('#js-sunsign').val();
+    const sunsign = $('#js-sunsign').val().toLowerCase();
     const day = $('#js-query').val();
     getHoroscope(sunsign, day);
   })
@@ -84,7 +105,8 @@ function watchFormTwo() {
      <input type="submit" value="Submit">
      </p>
    </form>
-   </fieldset>`
+   </fieldset>
+   <p id="js-error-message" class="error-message"></p>`
    )
   $(`#js-sunsign option[value="${sunsign}"]`).attr("selected",true);
   $('#js-query option[value="today"]').attr("selected",true);
