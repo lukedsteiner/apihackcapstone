@@ -49,20 +49,19 @@ function getHoroscope(sunsign, query) {
   const url = `https://aztro.sameerkumar.website?sign=${sunsign}&day=${query}`
   console.log(url);
 
-  fetch(url, {
-    method: 'post'
-  })
+fetch(url, {
+  method: 'post'
+})
     .then(response => {
-      if (response.ok) {
         return response.json();
         console.log(response.json());
       }
       throw new Error(response.statusText);
-    })
-    // .then(responseJson => displayResults(responseJson))
+    }
+    //.then(responseJson => displayResults(responseJson))
     .catch(err => {
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
-    });
+    }));
 }
 
 

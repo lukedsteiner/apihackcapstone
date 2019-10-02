@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  button, input[type="text"] {
+    padding: 5px;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  main {
+      text-align: center;
+  }
+  header {
+      text-align: center;
+  }
+  .logo {
+      height: 25vh;
+      display: inline;
+  }
+
+  fieldset {
+      border: none;
+  }
+
+  select {
+      border: solid black 2px;
+      border-radius: 2px;
+  }
