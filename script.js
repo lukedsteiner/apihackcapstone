@@ -46,24 +46,17 @@ function calculateSunsign(value) {
 }
 
 function getHoroscope(sunsign, query) {
-  const url = `http://sandipbgt.com/theastrologer/api/horoscope/${sunsign}/${query}`
+  const url = `https://aztro.sameerkumar.website?sign=${sunsign}&day=${query}`
   console.log(url);
 
   fetch(url, {
-    method: 'post',
-    mode: 'no-cors'
+    method: 'post'
   })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-        console.log(response.json());
-      }
-      throw new Error(response.statusText);
-    })
-   ///.then(responseJson => displayResults(responseJson))
-    .catch(err => {
-      $('#js-error-message').text(`Something went wrong: ${err.message}`);
-    });
+    .then(response => response.json())
+    .then(json => {
+    const description = json.description;
+    console.log(description);
+});
 }
 
 
