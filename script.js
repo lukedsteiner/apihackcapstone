@@ -1,5 +1,7 @@
 let sunsign = 'aquarius';
 let symbol = 'https://www.astrology-zodiac-signs.com/images/aquarius.jpg';
+let month = '';
+let date = '';
 
 function createContent(compatibility, mood, lucky, description) {
   $('.content-container').empty();
@@ -148,6 +150,8 @@ function watchClear() {
          </p>
        </form>
        </fieldset>`);
+       $(`#js-date option[value="${date}"]`).attr("selected",true);
+       $(`#js-month option[value="${month}"]`).attr("selected",true);
     watchFormOne();
 })}
 
@@ -250,8 +254,8 @@ function skipFormOne() {
 function watchFormOne() {
   $('.js-birth-date').submit(event => {
     event.preventDefault();
-    const month = $('#js-month').val();
-    const date = $('#js-date').val();
+    month = $('#js-month').val();
+    date = $('#js-date').val();
     let signValue = `${month}.${date}`
     calculateSunsign(signValue);
   });
