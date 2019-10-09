@@ -14,8 +14,8 @@ function createContent(compatibility, mood, lucky, description) {
 
 function calculateSunsign(value) {
   console.log(value);
-  const sunsign = 'placeholder';
-  const symbol = 'placeholder';
+  let sunsign = 'placeholder';
+  let symbol = 'placeholder';
   if (value <= 2.18 && value >= 1.20) {
     sunsign = 'Aquarius';
     symbol = 'https://www.astrology-zodiac-signs.com/images/aquarius.jpg'
@@ -100,7 +100,8 @@ function watchFormTwo() {
  function nextForm(sunsign) {
    $('.content-container').empty();
    $('.content-container').append(
-     `<form class="js-horoscope">
+     `<section class='sign-indicator'>The date (if selected) is within the range of the ${sunsign} sign</section>
+     <form class="js-horoscope">
      <fieldset>
      <legend>Choose your Sunsign, and pick which day's horoscope you would like!</legend>
      <p>
