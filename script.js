@@ -9,7 +9,10 @@ function createContent(compatibility, mood, lucky, description) {
   <h3>Mood Forecast</h3>
   <section class="mood">${mood}</section>
   <h3>Lucky Number</h3>
-  <section class="lucky number">${lucky}</section>`)
+  <section class="lucky number">${lucky}</section>
+  <button type="button" id="restartButton">Restart?</button>`
+  );
+  watchRestart();
 }
 
 function calculateSunsign(value) {
@@ -87,12 +90,49 @@ function getHoroscope(sunsign, query) {
 });
 }
 
+function watchRestart() {
+  $('.content-container').on('click', '#restartButton', function(event) {
+    $('.content-container').empty();
+   $('.content-container').append(
+     `<form class="js-horoscope">
+     <fieldset>
+     <legend>Choose your Sunsign, and pick which day's horoscope you would like!</legend>
+     <p>
+     <select id = "js-sunsign">
+             <option value = "Aquarius">Aquarius</option>
+             <option value = "Pisces">Pisces</option>
+             <option value = "Aries">Aries</option>
+             <option value = "Taurus">Taurus</option>
+             <option value = "Gemini">Gemini</option>
+             <option value = "Cancer">Cancer</option>
+             <option value = "Leo">Leo</option>
+             <option value = "Virgo">Virgo</option>
+             <option value = "Libra">Libra</option>
+             <option value = "Scorpio">Scorpio</option>
+             <option value = "Sagittarius">Sagittarius</option>
+             <option value = "Capricorn">Capricorn</option>
+     </select>
+     <select id = "js-query">
+             <option value = "yesterday">Yesterday</option>
+             <option value = "today">Today</option>
+             <option value = "tomorrow">Tomorrow</option>
+
+     </select>
+     <input type="submit" value="Submit">
+     </p>
+   </form>
+   </fieldset>
+   <p id="js-error-message" class="error-message"></p>`
+  );
+  watchFormTwo();
+})
+}
 
 function watchFormTwo() {
   $('.js-horoscope').submit(event => {
     event.preventDefault();
-    const sunsign = $('#js-sunsign').val().toLowerCase();
-    const day = $('#js-query').val();
+    let sunsign = $('#js-sunsign').val().toLowerCase();
+    let day = $('#js-query').val();
     getHoroscope(sunsign, day);
   })
 }
