@@ -56,13 +56,22 @@
 
   fieldset {
       border: none;
+      margin: 0;
   }
 
   label {
       display: block;
   }
-  
+
   select {
       border: solid black 2px;
       border-radius: 2px;
+  }
+
+  .symbol {
+      height: 25vh;
+  }
+
+  button {
+    margin-top: 5px;
   }
