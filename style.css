@@ -4,7 +4,28 @@
   
   body {
     font-family: 'Roboto', sans-serif;
+    height: 100vh;
   }
+
+  .bg-image {
+    background-image: url("https://store-images.s-microsoft.com/image/apps.37795.9007199266332301.77417de5-9d9a-4977-b70e-2ecdd402e750.680a3034-f715-4587-998a-1eaa4cf7438e?mode=scale&q=90&h=1080&w=1920");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+  }
+
+  .bg-image-overlay {
+ 
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
+    url("https://store-images.s-microsoft.com/image/apps.37795.9007199266332301.77417de5-9d9a-4977-b70e-2ecdd402e750.680a3034-f715-4587-998a-1eaa4cf7438e?mode=scale&q=90&h=1080&w=1920");
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    }
   
   button, input[type="text"] {
     padding: 5px;
