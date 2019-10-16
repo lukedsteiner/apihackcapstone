@@ -45,10 +45,12 @@
   header {
       text-align: center;
   }
+  
   .logo {
-      height: 25vh;
-      display: inline;
+    height: 25vh;
+    display: inline;
   }
+
 
   fieldset {
       border: none;
