@@ -36,6 +36,21 @@
   button:hover {
     cursor: pointer;
   }
+
+  input {
+    background-color: white;
+    color: black;
+    border-radius: 6px;
+    transition: background .2s linear,
+     border-radius 1s ease-in 1s;
+  }
+
+  input:hover, input:focus {
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+  }
+  
   
   .hidden {
     display: none;

@@ -56,12 +56,12 @@ function calculateSunsign(value) {
   else {
     sunsign = 'Capricorn';
   }
-
+  getBirthdays(month, date);
   nextForm(sunsign);
 }
 
 function getHoroscope(sunsign, query) {
-  const url = `https://aztro.sameerkumar.website?sign=${sunsign}&day=${query}`
+  const url= `https://aztro.sameerkumar.website?sign=${sunsign}&day=${query}`
 
   fetch(url, {
     method: 'post'
@@ -73,6 +73,20 @@ function getHoroscope(sunsign, query) {
     const lucky = json.lucky_number;
     const description = json.description;
     createContent(compatibility, mood, lucky, description)
+});
+}
+
+function getBirthdays(month, date) {
+  const url2 = `http://history.muffinlabs.com/date/${month}/${date}`
+
+  fetch(url2, {
+    method: 'get',
+    mode: 'no-cors'
+  })
+    .then(response => response.json())
+    .then(json => {
+    const births = json.data.births;
+    console.log(births);
 });
 }
 
@@ -198,7 +212,6 @@ function watchFormOne() {
     let signValue = `${month}.${date}`
     calculateSunsign(signValue);
   });
-  skipFormOne();
 }
 
 $(watchFormOne);
