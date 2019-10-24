@@ -2,6 +2,7 @@ let sunsign = 'aquarius';
 let symbol = 'https://www.astrology-zodiac-signs.com/images/aquarius.jpg';
 let month = '';
 let date = '';
+let people = {};
 
 function createContent(compatibility, mood, lucky, description) {
   $('.content-container').empty();
@@ -77,7 +78,6 @@ function getHoroscope(sunsign, query) {
 
 function getBirthdays(month, date) {
   const url2 = `https://cors-anywhere.herokuapp.com/http://history.muffinlabs.com/date/${month}/${date}`
-  let people = [];
   fetch(url2, {
     method: 'get'
   })
@@ -85,8 +85,8 @@ function getBirthdays(month, date) {
     .then(json => {
     const births = json.data.Births;
     for (i=0; i<5; i++) {
-      let people = [];
-      people.push(births[i]);
+      people[i] = births[i].text;
+      console.log(people)
     };
 });
 console.log(people);
@@ -170,7 +170,7 @@ function watchFormTwo() {
    $('.content-container').empty();
    $('.content-container').append(
      `<section class='sign-indicator'>The date (if selected) is within the range of the ${sunsign} sign</section>
-     <section class='famous-people'>These famous individuals share that same birth date: ${people}</section>
+     <section class='famous-people'>These famous individuals share that same birth date:` +people+ `</section>
      <form class="js-horoscope">
      <fieldset>
      <legend>Choose your Sunsign, and pick which day's horoscope you would like!</legend>
