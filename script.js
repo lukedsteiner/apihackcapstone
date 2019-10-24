@@ -57,7 +57,6 @@ function calculateSunsign(value) {
     sunsign = 'Capricorn';
   }
   getBirthdays(month, date);
-  nextForm(sunsign);
 }
 
 function getHoroscope(sunsign, query) {
@@ -77,17 +76,21 @@ function getHoroscope(sunsign, query) {
 }
 
 function getBirthdays(month, date) {
-  const url2 = `http://history.muffinlabs.com/date/${month}/${date}`
-
+  const url2 = `https://cors-anywhere.herokuapp.com/http://history.muffinlabs.com/date/${month}/${date}`
+  let people = [];
   fetch(url2, {
-    method: 'get',
-    mode: 'no-cors'
+    method: 'get'
   })
     .then(response => response.json())
     .then(json => {
-    const births = json.data.births;
-    console.log(births);
+    const births = json.data.Births;
+    for (i=0; i<5; i++) {
+      let people = [];
+      people.push(births[i]);
+    };
 });
+console.log(people);
+nextForm(sunsign, people);
 }
 
 function watchClear() {
@@ -163,14 +166,18 @@ function watchFormTwo() {
   })
 }
 
- function nextForm() {
+ function nextForm(sunsign, people) {
    $('.content-container').empty();
    $('.content-container').append(
      `<section class='sign-indicator'>The date (if selected) is within the range of the ${sunsign} sign</section>
+     <section class='famous-people'>These famous individuals share that same birth date: ${people}</section>
      <form class="js-horoscope">
      <fieldset>
      <legend>Choose your Sunsign, and pick which day's horoscope you would like!</legend>
      <p>
+     <label for="js-sunsign">
+      Sunsign
+    </label>
      <select id = "js-sunsign">
              <option value = "Aquarius">Aquarius</option>
              <option value = "Pisces">Pisces</option>
@@ -185,6 +192,9 @@ function watchFormTwo() {
              <option value = "Sagittarius">Sagittarius</option>
              <option value = "Capricorn">Capricorn</option>
      </select>
+     <label for="js-query">
+     Which day's horoscope?
+     </label>
      <select id = "js-query">
              <option value = "yesterday">Yesterday</option>
              <option value = "today">Today</option>

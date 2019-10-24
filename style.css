@@ -37,7 +37,7 @@
     cursor: pointer;
   }
 
-  input {
+  input, #clearButton{
     background-color: white;
     color: black;
     border-radius: 6px;
@@ -45,7 +45,7 @@
      border-radius 1s ease-in 1s;
   }
 
-  input:hover, input:focus {
+  input:hover, input:focus, #clearButton:focus, #clearButton:hover {
     color: white;
     background-color: black;
     border-radius: 50%;
