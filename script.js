@@ -1,8 +1,10 @@
-let sunsign = 'aquarius';
-let symbol = 'https://www.astrology-zodiac-signs.com/images/aquarius.jpg';
+
+//These hold the values so that these are preloaded when resetting//
 let month = '';
 let date = '';
 
+
+//This creates the final page, in which the horoscope lives//
 function createContent(compatibility, mood, lucky, description) {
   $('.content-container').empty();
   $('.content-container').append(
@@ -19,6 +21,7 @@ function createContent(compatibility, mood, lucky, description) {
   watchClear();
 }
 
+//This takes the date input value and assigns a sunsign using the ranges/if statements//
 function calculateSunsign(value) {
   if (value <= 2.18 && value >= 1.20) {
     sunsign = 'Aquarius';
@@ -59,6 +62,7 @@ function calculateSunsign(value) {
   nextForm();
 }
 
+//takes the sunsign and the date inputs and grabs information from the horoscopes API//
 function getHoroscope(sunsign, query) {
   const url= `https://aztro.sameerkumar.website?sign=${sunsign}&day=${query}`
 
@@ -75,6 +79,7 @@ function getHoroscope(sunsign, query) {
 });
 }
 
+//Takes the birthdate provided and pulls data//
 function getBirthdays(month, date) {
   const url2 = `https://cors-anywhere.herokuapp.com/http://history.muffinlabs.com/date/${month}/${date}`
   fetch(url2, {
@@ -82,11 +87,13 @@ function getBirthdays(month, date) {
   })
     .then(response => response.json())
     .then(json => {
+//Creates a births value, and a names object. The .text array in the json is then iterated over to push the first 5 values into the object//
     const births = json.data.Births;
     let namesList = {};
     for (i=0; i<5; i++) {
       namesList[i] = births[i].text;
     };
+  //creates a new variable that is an array of the list of names, then pushes those names as list items into the DOM//
     let names = Object.values(namesList);
     for (i=0; i<5; i++) {
       $('.names').append('<li>'+names[i]+'</li>');
@@ -94,6 +101,7 @@ function getBirthdays(month, date) {
 });
 }
 
+//Watches the clear button, which if used, repushes the original form//
 function watchClear() {
   $('.content-container').on('click', '#clearButton', function(event) {
     $('.content-container').empty();
@@ -158,6 +166,7 @@ function watchClear() {
     watchFormOne();
 })}
 
+//Watches the "horoscope" form and sets the sunsign and day variables, before passing them to the API function//
 function watchFormTwo() {
   $('.js-horoscope').submit(event => {
     event.preventDefault();
@@ -167,6 +176,7 @@ function watchFormTwo() {
   })
 }
 
+//Upon sending the date, this creates the horoscopes form, and creates the unordered list//
  function nextForm() {
    $('.content-container').empty();
    $('.content-container').append(
@@ -217,7 +227,7 @@ function watchFormTwo() {
 }
 
 
-
+//This watches the original form and sets the variables for month and day. Subsequently, it creates a single numeric value for the sunsign script to use in its ranges//
 function watchFormOne() {
   $('.js-birth-date').submit(event => {
     event.preventDefault();
