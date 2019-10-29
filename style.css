@@ -51,15 +51,22 @@
     border-radius: 50%;
   }
   
-  
   .hidden {
     display: none;
   }
 
+  ul {
+    list-style-type:none;
+    padding-inline-start: 0px;
+  }
+
   main {
       text-align: center;
+      padding-left: 10%;
+      padding-right: 10%;
+
   }
-  
+
   header {
       text-align: center;
   }

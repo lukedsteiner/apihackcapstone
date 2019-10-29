@@ -2,7 +2,6 @@ let sunsign = 'aquarius';
 let symbol = 'https://www.astrology-zodiac-signs.com/images/aquarius.jpg';
 let month = '';
 let date = '';
-let people = {};
 
 function createContent(compatibility, mood, lucky, description) {
   $('.content-container').empty();
@@ -57,7 +56,7 @@ function calculateSunsign(value) {
   else {
     sunsign = 'Capricorn';
   }
-  getBirthdays(month, date);
+  nextForm();
 }
 
 function getHoroscope(sunsign, query) {
@@ -84,13 +83,15 @@ function getBirthdays(month, date) {
     .then(response => response.json())
     .then(json => {
     const births = json.data.Births;
+    let namesList = {};
     for (i=0; i<5; i++) {
-      people[i] = births[i].text;
-      console.log(people)
+      namesList[i] = births[i].text;
     };
+    let names = Object.values(namesList);
+    for (i=0; i<5; i++) {
+      $('.names').append('<li>'+names[i]+'</li>');
+    }
 });
-console.log(people);
-nextForm(sunsign, people);
 }
 
 function watchClear() {
@@ -166,11 +167,13 @@ function watchFormTwo() {
   })
 }
 
- function nextForm(sunsign, people) {
+ function nextForm() {
    $('.content-container').empty();
    $('.content-container').append(
-     `<section class='sign-indicator'>The date (if selected) is within the range of the ${sunsign} sign</section>
-     <section class='famous-people'>These famous individuals share that same birth date:` +people+ `</section>
+     `<section class='sign-indicator'>That date is within the range of the ${sunsign} sign</section>
+     <span class='famous-people'>These figures share that birth date:</span> 
+     <ul class="names">
+     </ul>
      <form class="js-horoscope">
      <fieldset>
      <legend>Choose your Sunsign, and pick which day's horoscope you would like!</legend>
@@ -209,6 +212,7 @@ function watchFormTwo() {
    )
   $(`#js-sunsign option[value="${sunsign}"]`).attr("selected",true);
   $('#js-query option[value="today"]').attr("selected",true);
+  getBirthdays(month, date);
   watchFormTwo();
 }
 
