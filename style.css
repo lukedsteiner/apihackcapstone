@@ -1,12 +1,15 @@
 * {
     box-sizing: border-box;
   }
+  html {
+    height: 100vh;
+    width: 100vw;
+  }
 
   body {
     font-family: 'Roboto', sans-serif;
-    text-shadow: 2px 2px 8px white;
-    height: 100vh;
-    width: 100vw;
+    color: white;
+    text-shadow: 2px 2px 8px black;
   }
 
   .bg-image {
@@ -15,14 +18,14 @@
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
-    height: 100%;
+    min-height: 100vh;
   }
 
   .bg-image-overlay {
  
     background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
     url("https://store-images.s-microsoft.com/image/apps.37795.9007199266332301.77417de5-9d9a-4977-b70e-2ecdd402e750.680a3034-f715-4587-998a-1eaa4cf7438e?mode=scale&q=90&h=1080&w=1920");
-    height: 100%;
+    min-height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -65,6 +68,13 @@
 
   fieldset {
     text-align: center;
+    border: none;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-block-start: 0;
+    padding-inline-start: 0;
+    padding-block-end: 0;
+  
   }
   
   .hidden {
@@ -93,9 +103,11 @@
   }
 
 
-  fieldset {
-      border: none;
-      margin: 0;
+
+
+  p {
+    margin-block-end: 0px;
+    margin-block-start: 0px;
   }
 
   label {
@@ -141,18 +153,40 @@
     color: #222;
     outline: none;
   }
+
   select option {
     font-weight:normal;
   }
 
-  .symbol {
-      height: 25vh;
+
+  .loader {
+    display: inline-block;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 2s linear infinite;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
-  #clearButton, select, input {
+  #clearButton, select {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
+  #js-query, input {
+    margin-bottom: 0px;
+  }
+
+
+  
 
   @media screen and (min-height: 1024px) {
     legend {
@@ -177,5 +211,12 @@
     main {
       padding-left: 20%;
       padding-right: 20%;
+    }
+  }
+
+  @media screen and (max-width: 254px) {
+    .logo {
+      width: 80%;
+      height: 80%;
     }
   }

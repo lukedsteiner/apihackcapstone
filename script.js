@@ -1,7 +1,8 @@
-
+"use strict";
 //These hold the values so that these are preloaded when resetting//
 let month = '';
 let date = '';
+let sunsign = '';
 
 
 //This creates the final page, in which the horoscope lives//
@@ -90,12 +91,13 @@ function getBirthdays(month, date) {
 //Creates a births value, and a names object. The .text array in the json is then iterated over to push the first 5 values into the object//
     const births = json.data.Births;
     let namesList = {};
-    for (i=0; i<5; i++) {
+    for (let i=0; i<5; i++) {
       namesList[i] = births[i].text;
     };
   //creates a new variable that is an array of the list of names, then pushes those names as list items into the DOM//
     let names = Object.values(namesList);
-    for (i=0; i<5; i++) {
+    $('.loader').remove();
+    for (let i=0; i<5; i++) {
       $('.names').append('<li>'+names[i]+'</li>');
     }
 });
@@ -181,7 +183,7 @@ function watchFormTwo() {
    $('.content-container').empty();
    $('.content-container').append(
      `<section class='sign-indicator'>That date is within the range of the ${sunsign} sign</section>
-     <span class='famous-people'>These figures share that birth date:</span> 
+     <section class='famous-people'>These figures share that birth date:  <section class="loader"></section></section>
      <ul class="names">
      </ul>
      <form class="js-horoscope">
